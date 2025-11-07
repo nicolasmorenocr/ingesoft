@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Firebase</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="Formulario2">
+      <div>
+<!-- esto es la parte para ver el correo electronico que se metio, para ver que funciona, esta en la esquina izquierda de arriba -->        
+        <!-- type="button" para que NO submit el form -->
+        <input id="input-demo" type="text" required>
+      </div>
+  </div>
+  <!-- este es toda la parte del formulario que desaparece al iniciar la sesión-->
+    <div class = "formulario">
+        <h1>Inicio de sesión</h1>
+        <form method = "post">
+            <div class = "username">
+                                    <input type = "text" id = "correo"> <label> Usuario </label>
+            </div>
+            <div class = "password">
+                                    <input type = "password" id = "password" > <label> Contraseña </label>
+            </div>
+            <!-- boton para iniciar sesión con un correo propio de la pagina -->
+            <div class = "Boton">
+                <input type ="Button" value ="Iniciar sesion" id ="button-login"/>
+            </div>
+            <!-- boton para registrarse que abre una ventana emergente-->
+            <div class = "registro">
+                <p>¿Haz olvidado la contraseña?</p>
+                <p>¿No tienes una cuenta?</p>
+                <input type ="button" value = "registrate" id ="button-logout">
+            </div>
+            <div id = "loginProviders">
+                <button id = "button-google"> Google </button>
+                
+            </div>
+        </form>
+    </div>
+
+  <!-- script principal (usa módulos ES) -->
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
