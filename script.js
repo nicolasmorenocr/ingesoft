@@ -5,6 +5,7 @@ const buttonLogin = document.querySelector("#button-login");
 const buttonLogout = document.querySelector("#button-logout");
 const inputDemo = document.querySelector("#input-demo");
 const formulario = document.querySelector(".formulario");
+const fuffy = document.querySelector("#fuffy");
 
 // Evitamos que el click haga submit o recargue
 buttonLogin.addEventListener("click", async (e) => {
@@ -51,5 +52,6 @@ onAuthStateChanged(auth, (user) => {
 function init(){
     if(auth.currentUser){
         formulario.classList.add("hidden");
+        fuffy.classList.remove("hidden");
     }
 }
