@@ -6,8 +6,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  signOut,
-  connectAuthEmulator
+  signOut
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
 // --- Configuración de tu proyecto Firebase (usa la tuya)
@@ -21,11 +20,9 @@ const firebaseConfig = {
 };
 
 // Inicializar Firebase y Auth (UNA ÚNICA VEZ)
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-// Si usas el Auth Emulator (opcional), descomenta la línea siguiente
-// connectAuthEmulator(auth, "http://localhost:9099");
 
 // Proveedor de Google
 const provider = new GoogleAuthProvider();

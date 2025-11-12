@@ -6,9 +6,13 @@ const buttonLogout = document.querySelector("#button-logout");
 const inputDemo = document.querySelector("#input-demo");
 const formulario = document.querySelector(".formulario");
 const fuffy = document.querySelector("#fuffy");
+const buttonGoogle = document.querySelector("#button-google");
+const buttonRegister = document.querySelector("#button-register");
+const RegisterPopup = document.querySelector("#RegistroPopup");
+const buttonCancRegister = document.querySelector("#Cancel-Register");
 
 // Evitamos que el click haga submit o recargue
-buttonLogin.addEventListener("click", async (e) => {
+buttonGoogle.addEventListener("click", async (e) => {
   e.preventDefault();
   try {
     const user = await login();
@@ -55,3 +59,16 @@ function init(){
         fuffy.classList.remove("hidden");
     }
 }
+// funcion para hacer aparecer el popup de registro
+buttonRegister.addEventListener("click", (e) => {
+  e.preventDefault();
+  RegisterPopup.classList.add("RegistroPopup");
+  RegisterPopup.showModal();
+  
+
+})
+buttonCancRegister.addEventListener("click", (e) => {
+  e.preventDefault();
+  RegisterPopup.classList.remove("RegistroPopup");
+  RegisterPopup.close();
+})
