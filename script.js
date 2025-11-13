@@ -90,8 +90,12 @@ buttonSendRegister.addEventListener("click", async (e) => {
       let email = document.getElementById("Input-Email").value;
       let password = document.getElementById("Input-Password").value;
   if(username == "" || email == "" || password == "" ){
+    alert("Todos los campos deben ser rellenados")
     return
   }
+  if(email.includes("@") == false){
+    alert("El correo debe contener un @")
+    return}
   let result = await CreateEmailAndPassword(email, password);
   let user = result.user;
   let uid = user.uid;
@@ -112,11 +116,12 @@ buttonLogin.addEventListener("click", async (e) =>
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     if(email == "" || password == "" ){
+      alert("Todos los campos deben ser rellenados")
       return
     }
     let ThereIsEmail = await CheckEmail(email);
     if(ThereIsEmail.empty){
-      console.log("El correo no existe");
+      alert("El correo no se encuentra registrado")
       return
     }
     let result = await LoginEmailAndPassword(email, password);
