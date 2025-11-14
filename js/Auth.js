@@ -6,9 +6,12 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  signOut,
-  connectAuthEmulator
+  signOut, 
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
 
 // --- Configuración de tu proyecto Firebase (usa la tuya)
 const firebaseConfig = {
@@ -21,18 +24,25 @@ const firebaseConfig = {
 };
 
 // Inicializar Firebase y Auth (UNA ÚNICA VEZ)
-const app = initializeApp(firebaseConfig);
+ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export default app;
+// Opcional: escucha cambios de estado de auth
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("onAuthStateChanged: user signed in:", user.email);
+  } else {
+    console.log("onAuthStateChanged: no user");
+  }
+});
 
-// Si usas el Auth Emulator (opcional), descomenta la línea siguiente
-// connectAuthEmulator(auth, "http://localhost:9099");
 
 // Proveedor de Google
 const provider = new GoogleAuthProvider();
 auth.languageCode = "es";
 
 // Función de login (exportada)
-export async function login() {
+export async function loginGoogle() {
   try {
     const result = await signInWithPopup(auth, provider);
     // result.user contiene la info del usuario
@@ -52,5 +62,25 @@ export async function logout() {
   } catch (error) {
     console.error("Error en logout:", error);
     throw error;
+  }
+}
+// Función auxiliar para el registro 
+export async function CreateEmailAndPassword(email,password){
+  try{
+    let result = await createUserWithEmailAndPassword(auth, email,password);
+    return result
+
+  }
+  catch(error){
+    console.error("error", error);
+  }
+}
+export async function LoginEmailAndPassword(email,password){
+  try{
+    let result = await signInWithEmailAndPassword(auth, email,password);
+    return result
+  }
+  catch(error){
+    console.error("error", error);
   }
 }

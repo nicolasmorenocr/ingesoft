@@ -1,6 +1,8 @@
+/* Estilo para ocultar elementos*/
 .hidden{
     display: none; 
 }
+/*Estilo pare el body*/
 body {
   margin: 0;
   padding: 0;
@@ -9,6 +11,7 @@ body {
   position: relative;
   font-family: verdana;
 }
+/* Estilo para el formulario inicial de inicio de sesión */
 .formulario{
   margin: 1px;
   opacity: 1;
@@ -23,17 +26,20 @@ body {
   padding: 10px;
   border-radius: 15px;
 }
+/* El titulo del inicio de sesion*/
 .formulario h1{
   opacity: 1;
   text-align: center;
   padding: 0 0 20px 0;
   border-bottom: 1px solid silver;
 }
+/* El div donde esta metido todo el formulario */
 .formulario form{
   opacity: 1;
   padding: 0 40px;
   box-sizing: border-box;
 }
+/*Aqui se les esta dando estilo a los elementos del formulario */
 form .username{
   opacity: 1;
   position: relative;
@@ -46,12 +52,28 @@ form .password{
   margin: 30px 0;
   border-bottom: 1px solid silver;
 }
+/* Estilo para los botones del formulario */
+
+/*Estilo para los botones para iniciar sesion con los proveedores */
 #loginProviders{
     position: relative;
     margin : 30px 0;
    
 }
-/* ___ BOTON MODAL  */
-/* ___ fin boton modal   */
-/* ___ ventana modal   */
-/* ___ fin ventana modal   
+.RegistroPopup{
+    position: relative;
+    margin : 250px auto;
+    width : 400px;
+    height: 400px;
+    justify-content: center;
+    align-items: center;  
+    display: flex;
+    
+}
+.InputRegister{
+    opacity: 1;
+    position: relative;
+    margin: 10px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid silver;
+}
