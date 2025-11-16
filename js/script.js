@@ -36,6 +36,7 @@ buttonGoogle.addEventListener("click", async (e) => {
 
       init();
     }
+    console.log("catch");
 
   } catch (err) {
     // Manejo de errores de login
