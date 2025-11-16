@@ -1,4 +1,4 @@
-import app from "./Auth.js";
+import app from "../config/Auth";
 import {
   getFirestore,
   collection,

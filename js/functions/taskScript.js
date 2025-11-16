@@ -6,7 +6,7 @@ import {getFirestore,collection,doc,setDoc,addDoc,updateDoc,deleteDoc,query,wher
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-functions.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging.js";
-import { auth } from "../Auth.js";
+import { auth } from "../../src/config/Auth.js";
 
 const app = getApp();
 const db = getFirestore(app);

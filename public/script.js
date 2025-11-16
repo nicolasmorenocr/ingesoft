@@ -1,6 +1,6 @@
 // script.js (módulo de UI, importa login/logout desde Auth.js)
-import { loginGoogle, logout, auth, CreateEmailAndPassword, LoginEmailAndPassword } from "./Auth.js";
-import { RegisterAccount, CheckEmail } from "./Db.js";
+import { loginGoogle, logout, auth, CreateEmailAndPassword, LoginEmailAndPassword } from "../src/services/AuthService.js";
+import { RegisterAccount, CheckEmail } from "../src/services/Db.js";
 
 const buttonLogin = document.querySelector("#button-login");
 const buttonLogout = document.querySelector("#button-logout2");
