@@ -8,6 +8,7 @@ import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging.js";
 import { auth } from "../../src/config/Auth.js";
 
+
 const app = getApp();
 const db = getFirestore(app);
 const functions = getFunctions(app, 'us-central1'); // ajustar región si hace falta
@@ -38,6 +39,18 @@ export function listenUserTasks(onUpdate) {
   return unsub;
 }
 
+export async function updateTask(taskId, updates) {
+  if (!auth.currentUser) throw new Error('Unauthenticated');
+  const taskRef = doc(db, 'tasks', taskId);
+  updates.updatedAt = serverTimestamp();
+  await updateDoc(taskRef, updates);
+}
+
+export async function deleteTask(taskId) {
+  if (!auth.currentUser) throw new Error('Unauthenticated');
+  const taskRef = doc(db, 'tasks', taskId);
+  await deleteDoc(taskRef);
+}
 // 3) Obtener ocurrencias para un rango (ejemplo: mes)
 export async function getOccurrencesForRange(startDateStr, endDateStr) {
   // Asume colección top-level 'occurrences' con campos 'userId' y 'date' (YYYY-MM-DD)
