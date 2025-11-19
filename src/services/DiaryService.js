@@ -1,38 +1,49 @@
-const admin = require("../config/firebaseAdmin");
+const admin = require('../config/firebaseAdmin');
 const db = admin.firestore();
+
+function diaryCollection(uid) {
+  // Colección por usuario: users/{uid}/diary
+  return db.collection('users').doc(uid).collection('diary');
+}
 
 module.exports = {
   async create(uid, data) {
-    const ref = db.collection("users").doc(uid).collection("diary").doc();
-    await ref.set({
-      ...data,
-      createdAt: new Date(),
-      updatedAt: new Date()
+    const col = diaryCollection(uid);
+    const now = admin.firestore.FieldValue.serverTimestamp();
+    const ref = await col.add({
+      title: data.title || '',
+      body: data.body || '',
+      mood: data.mood || null,
+      tags: Array.isArray(data.tags) ? data.tags : [],
+      attachments: data.attachments || [],
+      createdAt: now,
+      updatedAt: now,
     });
     return ref.id;
   },
 
   async list(uid) {
-    const snapshot = await db.collection("users")
-      .doc(uid)
-      .collection("diary")
-      .orderBy("createdAt", "desc")
+    const snapshot = await diaryCollection(uid)
+      .orderBy('createdAt', 'desc')
       .get();
-
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   },
 
   async get(uid, id) {
-    const doc = await db.collection("users").doc(uid).collection("diary").doc(id).get();
+    const doc = await diaryCollection(uid).doc(id).get();
+    if (!doc.exists) return null;
     return { id: doc.id, ...doc.data() };
   },
 
   async update(uid, id, data) {
-    return db.collection("users").doc(uid).collection("diary").doc(id)
-      .update({ ...data, updatedAt: new Date() });
+    const updateData = {
+      ...data,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
+    return diaryCollection(uid).doc(id).update(updateData);
   },
 
   async remove(uid, id) {
-    return db.collection("users").doc(uid).collection("diary").doc(id).delete();
-  }
+    return diaryCollection(uid).doc(id).delete();
+  },
 };
