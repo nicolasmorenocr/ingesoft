@@ -15,10 +15,11 @@ app.use(cors());
 
 app.use('/api/auth', authRouter);
 
+// rutas del diario
+const diaryRoutes = require("./routes/diaryRoutes");
+app.use("/diary", diaryRoutes);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
-
-const diaryRoutes = require("./routes/diaryRoutes");
-app.use("/diary", diaryRoutes);
